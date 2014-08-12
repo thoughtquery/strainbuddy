@@ -9,10 +9,22 @@ class Dispensary
 
   end
 
- def self.all
+ def save
 
-   dispensaries = []
+   result = DB.exec("INSERT INTO dispensary (name) VALUES ( '#{@name}') RETURNING id;")
+
 
  end
 
+ def self.all
+
+   dispensaries = []
+   results = DB.exec("SELECT * FROM dispensary;")
+
+   results.each do |result|
+     dispensaries << Dispensary.new({id: result['id'].to_i, name: result['name']})
+
+    end
+dispensaries
+  end
 end
