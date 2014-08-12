@@ -13,7 +13,7 @@ class Strain
   def save
 
     result = DB.exec("INSERT INTO strain (name, bloom, smells) VALUES ( '#{@name}', #{bloom}, '#{smells}') RETURNING id;")
-    
+
 
   end
 
@@ -25,7 +25,9 @@ class Strain
     results.each do |result|
       strains << Strain.new({id: result['id'].to_i, name: result['name'], smell: result['smells'], bloom: result['bloom']})
 
-  end
+    end
 strains
-end
+  end
+
+  
 end
