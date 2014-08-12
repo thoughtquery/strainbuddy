@@ -1,6 +1,18 @@
 class Dispensary
 
+ attr_accessor :name, :id
+
  def initialize(attributes)
-   @attributes = nil
+
+   @id = attributes[:id]
+   @name = attributes[:name]
+
+  end
+
+ def self.all
+
+   dispensaries = []
+
  end
- end
+
+end
