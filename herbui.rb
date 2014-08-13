@@ -40,6 +40,7 @@ puts "I m you strain buddy!!"
 
 
   def main_menu
+
     loop do
       space
       puts "Enter strain information, press A"
@@ -50,9 +51,12 @@ puts "I m you strain buddy!!"
         case first_choice
             when 'A'
               make_strain
-           end
+            when 'B'
+              make_dispensary
+            else
+              puts "not valid"
 
-
-end
+    end
+  end
 end
 main_menu

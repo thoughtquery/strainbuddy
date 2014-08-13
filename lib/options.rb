@@ -6,36 +6,25 @@ end
   def make_strain
     the_strain = []
     puts "Whats the strain called ?"
-
     name = gets.chomp
-
     puts "whats it smell like?"
     smell = gets.chomp
-
     puts "how long does it take to bloom?"
     bloom = gets.chomp
-
-
     puts "O.k. so is this right?"
-
     space
-
     puts "its called: \"#{name}\", it smells like: \"#{smell}\", and it takes \"#{bloom}\" weeks to bloom?"
-
     space
-
     puts 'Press "Y" if so'
     puts 'Press "N" to re enter info'
     puts "Or else if you'd like to go back to the Main Menu press M"
 
-    loop do
-      answer = gets.chomp.upcase
-
-
+      loop do
+        answer = gets.chomp.upcase
           case answer
             when 'Y'
-
               Strain.new(name: name, smells: smell, bloom: bloom)
+
               puts 'Press "A" to make another strain or "M" to go back to main menu'
               back = gets.chomp
 
@@ -55,5 +44,24 @@ end
             end
           end
 make_strain
+end
 
+ def make_dispensary
+
+   the_strains = []
+
+   puts "What is the dispensary name?"
+   name = gets.chomp
+   new_dispensary = Dispensary.new(name: name)
+   puts 'what strains do they have there? If your done say "NO"'
+   strains = gets.chomp.upcase
+   if strains == "NO"
+     main_menu
+   end
+
+      until strains == "NO"
+        strains = gets.chomp
+        the_strains << strains
+
+      end
     end
