@@ -20,7 +20,7 @@ class Dispensary
    dispensaries
  end
 
-  def insert_dispense_strain(new_dispensary, strain)
-    DB.exec("INSERT INTO strain_dispensary (dispensary_id, strain_id) VALUES (#{new_dispensary}, #{strain})")
+  def self.insert_dispense_strain(new_dispensary, strain)
+    DB.exec("INSERT INTO strain_dispensary (dispensary_id, strain_id) VALUES (#{new_dispensary}, #{strain});")
   end
 end
