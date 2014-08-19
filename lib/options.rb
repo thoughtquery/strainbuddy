@@ -45,6 +45,19 @@ def make_dispensary
  end
 end
 
+def list_dispense
+  puts "Here is a list of Dispensaries"
+  count = 0
+  results = Dispensary.all
+  results.each do |result|
+    puts "#{result.name}            #{count}"
+    count += 1
+  end
+  puts "What dispensary would you like use? Enter it's corresponding number"
+  numba = gets.chomp.to_i
+  dispense_id = Dispensary.all[numba].id
+end
+
 
 def insert_strain
   puts "Here is a list of Dispensaries"
@@ -57,6 +70,7 @@ def insert_strain
   end
   puts "What dispensary would you like to add a strain to? Enter it's corresponding number"
   numba = gets.chomp.to_i
+  dispense_id = Dispensary.all[numba].id
   puts "here is a list of strains"
   strains = Strain.all
   strains.each do |strain|
@@ -65,8 +79,9 @@ def insert_strain
   end
   puts "What strain would you like to add? Please enter corresponding number"
   numba2 = gets.chomp.to_i
+  strain_id = Strain.all[numba2].id
   puts "Thanks!"
-  Dispensary.insert_dispense_strain(numba, numba2)
+  Dispensary.insert_dispense_strain(dispense_id, strain_id)
   puts "Insert another strain? Press Y"
   puts "Return to main menu? Press M"
   case gets.chomp.upcase
@@ -77,4 +92,27 @@ def insert_strain
   else
     puts "Invalid!"
   end
+end
+
+def show_dispense_strain
+  puts "Here is a list of Dispensaries"
+  count = 0
+  results = Dispensary.all
+  results.each do |result|
+    puts "#{result.name}            #{count}"
+    count += 1
+  end
+  puts "What dispensary would you like use? Enter it's corresponding number"
+  numba = gets.chomp.to_i
+  puts "Here are their strains"
+  dispense_id = Dispensary.all[numba].id
+  results2 = Dispensary.select_strains_by_dispensary(dispense_id)
+  results2.each do |result|
+    puts "#{result.name}"
+  end
+  puts "Press anything to go back to main menu"
+  if gets.chomp
+    main_menu
+  end
+
 end

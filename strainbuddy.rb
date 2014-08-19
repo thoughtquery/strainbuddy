@@ -57,6 +57,8 @@ puts "I m you strain buddy!!"
             make_dispensary
           when 'S'
             insert_strain
+          when 'D'
+            show_dispense_strain
           else
             puts "not valid"
         end

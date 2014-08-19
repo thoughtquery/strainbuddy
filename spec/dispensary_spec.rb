@@ -35,3 +35,17 @@ describe "insert_dispense_strain" do
     new_strain.save
   end
 end
+
+describe "select_strains_by_dispensary" do
+  it "lists all strains in a dispensary" do
+    new_dispensary = Dispensary.new({name: "Value Village", id: 1})
+    new_dispensary.save
+    new_strain = Strain.new({name: "Stankapolics", smells: "Like the end", bloom: 7, id: 1})
+    new_strain.save
+    new_strain2 = Strain.new({name: "Poopstick", smells: "Like it tastes", bloom: 6, id: 2})
+    new_strain2.save
+    Dispensary.insert_dispense_strain(new_dispensary.id, new_strain.id)
+    Dispensary.insert_dispense_strain(new_dispensary.id, new_strain2.id)   
+    expect(Dispensary.select_strains_by_dispensary(new_dispensary.id).length).to eq 4
+  end
+end
